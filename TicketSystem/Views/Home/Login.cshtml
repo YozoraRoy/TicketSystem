@@ -1,0 +1,203 @@
+﻿
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <div class="section">
+        @*<form asp-controller="Home" asp-action="Login" method="post">*@
+
+        @Html.AntiForgeryToken()
+
+        @*<div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Text input">
+                </div>
+            </div>*@
+
+        <div class="field">
+            <label class="label">帳號</label>
+            <div class="control has-icons-left has-icons-right">
+                <input id="loginName" class="input " type="text" placeholder="輸入" value="" required>
+                <span class="icon is-small is-left">
+                    <i class="fa fa-user"></i>
+                </span>
+                <span class="icon is-small is-right">
+                    <i class="fa fa-check"></i>
+                </span>
+            </div>
+            @*<p class="help is-success">This username is available</p>*@
+        </div>
+
+        <div class="field">
+            <label class="label">密碼</label>
+            <div class="control has-icons-left has-icons-right">
+                <input id="loginpassword" class="input is-warning" type="password" placeholder="輸入" value="" required>
+                <span class="icon is-small is-left">
+                    <i class="fa fa-user"></i>
+                </span>
+                <span class="icon is-small is-right">
+                    <i class="fa fa-check"></i>
+                </span>
+            </div>
+            @*<p class="help is-success">This username is available</p>*@
+        </div>
+
+        @*<div class="field">
+                <label class="label">Email</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input class="input is-danger" type="email" placeholder="Email input" value="hello">
+                    <span class="icon is-small is-left">
+                        <i class="fa fa-envelope"></i>
+                    </span>
+                    <span class="icon is-small is-right">
+                        <i class="fa fa-exclamation-triangle"></i>
+                    </span>
+                </div>
+                <p class="help is-danger">This email is invalid</p>
+            </div>*@
+
+        @*<div class="field">
+                <label class="label">Subject</label>
+                <div class="control">
+                    <div class="select">
+                        <select>
+                            <option>Select dropdown</option>
+                            <option>With options</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Message</label>
+                <div class="control">
+                    <textarea class="textarea" placeholder="Textarea"></textarea>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <label class="checkbox">
+                        <input type="checkbox">
+                        I agree to the <a href="#">terms and conditions</a>
+                    </label>
+                </div>
+            </div>*@
+
+        @*<div class="field">
+                <div class="control">
+                    <label class="radio">
+                        <input type="radio" name="question">
+                        Yes
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="question">
+                        No
+                    </label>
+                </div>
+            </div>*@
+        <br />
+        <div id="reCAPTHCA"></div>
+        <span id="reCAPTHCVaild" hidden>0</span>
+
+        <br />
+        <div class="field is-grouped">
+            <div class="control">
+                <button id="loginSubmit" class="button is-link"> 送出</button>
+            </div>
+            @*<div class="control">
+                  <button class="button is-text">Cancel</button>
+              </div>*@
+        </div>
+    </div>
+
+    <div class="section"></div>
+</div>
+
+ 
+<script type="text/javascript">
+
+    $().ready(function () {
+        
+    });
+ 
+
+    $("#loginSubmit").on('click', function () {
+
+        // TODO 驗證 欄位中的值- 前端防呆 etc 
+
+        Login();
+
+    });
+
+   
+    function Login(){
+
+        // 取得IP
+        // var clientIpaddress = $.getJSON('https://api.db-ip.com/v2/free/self', function (data) {
+        //    return data.ipAddress;
+        //});
+        // debugger;
+        // console.log("取得IP:" + clientIpaddress);
+
+        // 取得登入者:
+        var loginNameString = $("#loginName").val();
+
+        // [256加密]
+        // var sha256pwd = CryptoJS.SHA256($("#loginpassword").val());
+        // var loginpasswordString = CryptoJS.enc.Base64.stringify(sha256pwd);
+
+        // [一般密碼]
+        var loginpasswordString = $("#loginpassword").val();
+
+        // var data0 = { loginName: loginName, password: loginpassword };
+        // var data0json = JSON.stringify(data0);
+
+        var loginUrl = '@Url.Action("Login", "Home")'; // Url.Action("CreatePerson", "Person", new { id = id });
+
+        // TODO: 開啟讀取特效
+
+        // 登入
+        $.ajax({
+            type: "POST",
+            url: loginUrl,
+            data: { loginName: loginNameString, password: loginpasswordString },
+            success: function (data) {
+                loginSuccessFunc(data);
+            },
+            fail: function (xor) {
+                loginfailFunc(xor);
+            },
+                dataType: 'json',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("requestverificationtoken",
+                        $('input:hidden[name="__RequestVerificationToken"]').val());
+            },
+            complete: {
+                // TODO: 關閉讀取特效
+            }
+        });
+    }
+
+    function loginSuccessFunc(data) {
+
+        // 判斷錯誤狀態
+        if (!data.isOk) {
+            alert(data.message)
+            return;
+        }
+
+        // TODO 登入成功訊息顯示
+
+        // 轉跳首頁
+            window.location = '@Url.Action("Index", "Home")';
+    }
+
+    function loginfailFunc(xhr, status, error) {
+        alert("登入失敗" + error);
+    }
+
+</script>

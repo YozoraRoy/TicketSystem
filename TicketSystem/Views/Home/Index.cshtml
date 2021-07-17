@@ -2,7 +2,222 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!-- Start Hero Carousel -->
+<body>
+
+    <br />
+    <div class="container">
+        <div class="columns">
+            <div class="column is-12">
+                
+                <section class="hero is-info welcome is-small">
+                    <div class="hero-body">
+                        <div class="container">
+                            <h1 class="title">
+                                Hey
+
+                                @{
+                                    if (string.IsNullOrEmpty(User.Identity.Name))
+                                    {
+                                        @Html.Raw("folks");
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw(User.Identity.Name);
+                                    }
+                                }
+
+
+                            </h1>
+                            <h2 class="subtitle">
+                                I hope you are having a great day!
+                            </h2>
+                        </div>
+                    </div>
+                </section>
+                <section class="info-tiles">
+                    <div class="tile is-ancestor has-text-centered">
+                        <div class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="title">123</p>
+                                <p class="subtitle">Feature Request</p>
+                            </article>
+                        </div>
+                        <div class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="title">37</p>
+                                <p class="subtitle">Bug</p>
+                            </article>
+                        </div>
+                        <div class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="title">28</p>
+                                <p class="subtitle">Test Case</p>
+                            </article>
+                        </div>
+                        <div class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="title">19</p>
+                                <p class="subtitle">Exceptions</p>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+                <div class="columns">
+                    <div class="column is-6">
+                        <div class="card events-card">
+                            <header class="card-header">
+                                <p class="card-header-title">
+                                    Priority
+                                </p>
+                                <a href="#" class="card-header-icon" aria-label="more options">
+                                    <span class="icon">
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </span>
+                                </a>
+                            </header>
+                            <div class="card-table">
+                                <div class="content">
+                                    <table class="table is-fullwidth is-striped">
+                                        <tbody>
+                                            <tr>
+                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                                <td>Lorum ipsum dolem aire</td>
+                                                <td class="level-right"><a class="button is-small " href="#">New</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                                <td>Lorum ipsum dolem aire</td>
+                                                <td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                                <td>Lorum ipsum dolem aire</td>
+                                                <td class="level-right"><a class="button is-small is-danger" href="#">Block By Extenal</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                                <td>Lorum ipsum dolem aire</td>
+                                                <td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                                <td>Lorum ipsum dolem aire</td>
+                                                <td class="level-right"><a class="button is-small is-danger" href="#">Block By Extenal</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                                <td>Lorum ipsum dolem aire</td>
+                                                <td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                                <td>Lorum ipsum dolem aire</td>
+                                                <td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                                <td>Lorum ipsum dolem aire</td>
+                                                <td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                                <td>Lorum ipsum dolem aire</td>
+                                                <td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item">View All</a>
+                            </footer>
+                        </div>
+                    </div>
+                    <div class="column is-6">
+                        <div class="card">
+                            <header class="card-header">
+                                <p class="card-header-title">
+                                    Inventory Search
+                                </p>
+                                <a href="#" class="card-header-icon" aria-label="more options">
+                                    <span class="icon">
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </span>
+                                </a>
+                            </header>
+                            <div class="card-content">
+                                <div class="content">
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input class="input is-large" type="text" placeholder="">
+                                        <span class="icon is-medium is-left">
+                                            <i class="fa fa-search"></i>
+                                        </span>
+                                        <span class="icon is-medium is-right">
+                                            <i class="fa fa-check"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <header class="card-header">
+                                <p class="card-header-title">
+                                    User Search
+                                </p>
+                                <a href="#" class="card-header-icon" aria-label="more options">
+                                    <span class="icon">
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </span>
+                                </a>
+                            </header>
+                            <div class="card-content">
+                                <div class="content">
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input class="input is-large" type="text" placeholder="">
+                                        <span class="icon is-medium is-left">
+                                            <i class="fa fa-search"></i>
+                                        </span>
+                                        <span class="icon is-medium is-right">
+                                            <i class="fa fa-check"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+      
+    <section class="hero is-primary">
+            <div class="hero-body">
+                <p class="title">
+                    更新日誌:
+                </p>
+                <p class="subtitle">
+                    2021/07/17 完成基本配置
+                </p>
+                <p class="subtitle">
+                    2021/07/18 完成資料庫配置
+                </p>
+            </div>
+        </section>
+
+    <br />
+
+
+</body>
+
+<!-- End Hero Carousel -->
+
+<script type="text/javascript">
+
+    bulmaCarousel.attach('#carousel-demo', {
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        infinite: false,
+    });
+
+</script>
