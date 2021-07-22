@@ -1,7 +1,6 @@
 ## Ticket System Design
 
-
-這是一個面試題目
+This is a Interview Question.
 
 Please design a ticket tracking system. This system allows QA to report a bug and RD can mark a bug as resolved.
 A. Phase I Requirement:
